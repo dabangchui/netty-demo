@@ -76,6 +76,7 @@ public class NettyServer {
             logger.info("Git Master 提交测试");
             logger.info("Git hot—fix 提交测试");
             logger.info("Git push122 提交测试");
+            logger.info("远程仓库修改的代码");
         }
     }
 
