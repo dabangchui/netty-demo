@@ -73,6 +73,7 @@ public class NettyServer {
         if (future.isSuccess()){
             channel = future.channel();
             logger.info("[start] [Netty Server 启动在 {} 端口]",port);
+            logger.info("[start] [Netty Server 启动在 {} 端口]",port);
         }
     }
 
