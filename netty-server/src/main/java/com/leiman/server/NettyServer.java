@@ -75,7 +75,7 @@ public class NettyServer {
             logger.info("[start] [Netty Server 启动在 {} 端口]",port);
             logger.info("Git Master 提交测试");
             logger.info("Git hot—fix 提交测试");
-            logger.info("Git push 提交测试");
+            logger.info("Git push1111 提交测试");
         }
     }
 
