@@ -1,0 +1,1548 @@
+syntax = "proto3";//语法版本 proto2、proto3
+//一个message相当于一个类
+//1、2、3并不代表参数默认值，而是一个参数标签
+//repeated可以理解为数组
+//枚举类型使用驼峰式命名, 首字母大写,每一项使用下划线大写分隔命名
+//message使用驼峰式命名, 首字母大写,成员数据使用下划线分隔命名
+
+message Message {
+    EMProtoID pId = 1;
+    bytes dataContent = 2;
+}
+
+enum EMProtoID {
+	// 心跳
+    heart = 0;
+	// 登录
+	login = 1;
+	// 退出
+	logOut = 2;
+	// 重连
+	reconnect = 3;
+	// 新服推荐
+	games = 4;
+	// 请求我的收藏
+	getCollect = 5;
+	// 新增我的收藏
+	addCollect = 6;
+	// 删除我的收藏
+	delCollect = 7;
+	// 请求服务器数据	
+	serverData = 8;
+	// 签到
+	sign = 9;
+	// 软件工具
+	softwares = 10;
+	// 推广
+	invit = 11;
+	// 玩家工具&GM工具
+	tool = 12;
+	// 消息
+	boxMessage = 13;
+	// 推送消息
+	pushBoxMessage = 14;
+	// 跑马灯
+	notice = 15;
+	// 推送跑马灯
+	pushNotice = 16;
+	// 轮播图
+	slide = 17;
+	// 推送轮播图
+	pushSlide = 18;
+	// 删除消息
+	delMessage = 19;
+	// 阅读消息
+	readMessage = 20;
+	// 比赛直播
+	gamesLive = 21;
+	// 推送比赛直播
+	pushgamesLive = 22;
+	// 多处登陆
+	pushSeveralLand = 23;
+	// 推送用户信息
+	pushUserData = 24;
+	// 全网数据
+	allGames = 25;
+	//提现
+	withdraw = 26;
+	//请求验证码
+	authentication = 27;
+	//提交验证码
+	checkAuthenCode = 28;
+	//苹果树金额
+	appleGold = 29;
+	//订单充值
+	orderPay = 30;
+	//订单查询
+	orderInquire = 31;
+	//排行榜
+	rankList = 32;
+	//游戏资产：我的金币/我的钱包/全网金币总量/当日奖池金币
+	capital = 33;
+	//保存盒子信息（当日游戏时长、下载游戏数、查看了几款游戏）
+	saveSoftData = 34;
+	//获取盒子信息（今日游戏时长、今日下载游戏数、今日查看了几款游戏）
+	getSoftData = 35;
+	//获取任务信息
+	getTaskData = 36;
+	//完成任务
+	finishTask = 37;
+	//领取任务奖励
+	drawTaskReward = 38;
+	//0点推送（新的一天通知客户端刷新相应数据：任务相关等）
+	pushNewDay=39;
+	//邀请的好友在线达到1小时
+	pushInvit = 40;
+	//保存用户行为数据
+	saveUserActionData = 41;
+	//用户账号绑定成功后重新登录
+	userRelogin = 42;
+	//金币兑换订单
+	goldConversion = 43;
+	//网站兑换Key
+	webExchangeKey = 44;
+	//获取账号下的品牌服列表信息
+	getBrandServeInfoList = 45;
+	//保存品牌服信息
+	saveBrandServeInfo = 46;
+	//领取品牌服奖励
+	receiveBrandServeAward = 47;
+	//数据变更推送数据给客户端 通知来调用指定协议的接口或返回数据更新
+	pushUpdateData = 48;
+	//沙巴克获取用户token
+	sbk_token = 49;
+	//金币兑换钱包
+	goldExchangeMoney=50;
+	//查询金币兑换钱包历史记录
+	qureyExchangeHistory=51;
+	//保障服列表
+	queryBoxInsure=52;
+	//投保与保障金额
+	queryBoxInsureAmount=53;
+	//我要投保
+	buyInsurance=54;
+	//我的保障
+	myInsure=55;
+	//投保公告
+	InsuranceAffiche=56;
+	//沙巴克比赛竞猜汇总消息
+	sbkGuessesInfo=57;
+	//沙巴克比赛竞猜详细信息
+	sbkGuessesInfoList=58;
+	//沙巴克比赛竞猜
+	sbkGuesses=59;
+	//沙巴克比赛结果推送
+	sbkGuessesResultPush=60;
+	//大家都在玩
+	everyoneIsPlaying=61;
+	//获取表数据更新时间
+	tableDataUpdateTime=62;
+	//新手帮助文档
+	NoviceHelpDocument=63;
+	//游戏分享
+	GameSharing=64;
+	//获取游戏分享详情
+	GameSharingDetails =65;
+	//盒子登录弹窗
+	GamesLoginPopup =66;
+	//开启宝箱
+	OpenTreasureBox =67;
+	//宝箱物品--我的物品
+	TreasureBoxMyGoods =68;
+	//宝箱物品--开启记录
+	TreasureBoxOpenRecord=69;
+	//保存反馈信息
+	saveFeedbackInfo =70;
+	//获取热更新提示内容
+	getUpdateTipInfo =71;
+	//沙巴克赛事信息
+	sbkEventInfo = 72;
+	//沙巴克任务信息
+	sbkActivityTask = 73;
+	//沙巴克赛事服计时
+	sbkGameTime = 74;
+	//沙巴克转盘抽奖
+	sbkDialLuckDraw = 75;
+	//沙巴克赛事
+	sbkMatch = 76;
+	//沙巴克赛事领取抽奖次数
+	sbkMatchGetLotteryNumber = 77;
+	//盒子活动中心活动详细信息
+	activityCenterInfo = 78;
+	//数据更新推送
+	DATA_UPDATE_PUSH_COMMON = 79;
+	//更新活动点击数
+	UPDATE_ACTIVITY_HITS = 80;
+	//沙巴克活动预开启
+	SBK_EVENT_PRE_STAER = 81;
+	
+}
+
+enum EMRes{
+	fail = 0;
+	succsess = 1;
+}
+
+message push_UpdateData{
+	int32 protoId = 1;  			//子协议码 用于通知是来重新调接口 还是取返回的数据回填 
+	int32 gold = 2;					//金币
+	int32 lucky_balance = 3; 		//钱包
+	int32 gameId = 4;  				//游戏id
+	int32 review = 5;				//游戏是新增还是要删除    1 新增游戏  2 删除游戏 3 游戏列表数据变更 
+	int32 check = 6;				//游戏禁用还是通过
+	Games games = 7; 				//新增或变更的游戏数据
+}
+
+	
+message Games{
+	// 服务器id
+	int32 sid = 1;
+	// 服务器名
+	string name = 2;
+	// 服务器ip
+	string ip = 3;
+	// 开区时间（毫秒）
+	int64 opentime = 4;
+	// 线路类别
+	string net = 5;
+	// 版本介绍
+	string version = 6;
+	// 客服QQ
+	string qq = 7;
+	// 主页地址
+	string detail = 8;
+	// 下载链接
+	string downloadurl = 9;
+	// 广告类型
+	int32 type = 10;
+	// 广告竞价
+	float price = 11;
+	// 优先级
+	int32 level = 12;
+}
+
+//用户信息
+message UserData{
+	// id
+	int32 uId = 1;
+	// 用户名
+	string nickname = 2;
+	// 用户头像链接
+	string headimgurl = 3;	
+	// 积分
+	int32 score = 4;
+	// 累计在线时长：秒（15年）
+	int64 onlineSec = 5;
+	// 已经推广人数
+	int32 promote = 6;
+	// uuid
+	int32 uuid = 7;
+	// 代理等级
+	int32 agencyLevel = 8;
+	// 今日推广
+	int32 dayInvit = 9;
+	// 本月推广
+	int32 monthInvit = 10;
+	//我的钱包(分)
+	int32 money = 11;
+	//认证状态
+	bool sftStatus = 12;
+	//是否为新玩家
+	bool isFreshUser = 13;
+	//用户等级
+	int32 userLevel = 14;
+	//用户等级名称
+	string userLevelName = 15;
+	//渠道ID
+	string channelId = 16;
+}
+
+//我的收藏
+message Collect{
+	// 服务器id
+	int32 sid = 1;
+	string name = 2;
+	// 服务器官网
+	string detail = 3;
+	// 文件位置
+	string file = 4;
+	//下载时间
+	int32 time = 5;
+}
+
+//软件工具
+message Software{
+	// 软件名称
+	string sName = 1;
+	// icon
+	string icon = 2;
+	// 下载链接
+	string links = 3;
+	// 类型
+	int32 type = 4;
+	// 大小
+	string size = 5;
+	// 下载次数
+	int32 downloadCount = 6;
+}
+
+//消息
+message BoxMessage{
+	int32	id = 1;
+	string	title = 2;
+	string	contents = 3;
+	int64	time = 4;
+	// 0未读，1已读
+	int32	status = 5;
+	string	sendName = 6;
+	int32	toUser = 7;
+	int32   msgType = 8;
+}
+
+//跑马灯
+message Notice{
+	int32	id = 1;
+	string	contents = 2;
+}
+
+//轮播图
+message Slide{
+	int32	id = 1;
+	string	pic = 2;
+	string	url = 3;
+	int32	sort = 4;
+}
+
+//比赛直播
+message Live{
+	int32	id = 1;
+	// 直播时间
+	int64	livetime = 2;
+	// 游戏信息
+	string	game_info = 3;
+	// 频道信息
+	string	channel_info = 4;
+	// 是否推荐(0不推荐，1推荐)
+	int32	recommend = 5;
+}
+
+message csHeart {
+}
+message scHeart {
+}
+
+message csLogin {
+	string openId = 1;
+	int32 LoginType = 2;  
+	string VisitorId = 3; //
+	string MachineCode = 4; //mac 地址
+	bool newVersion = 5; // 无效了 
+	//渠道ID
+	string channelId = 6;  //1000
+	//操作系统
+	string os = 7; 
+	//盒子版本 1、1.0 \ 2、2.0 \ 3、3.0
+	int32 platVersions = 8;
+	
+}
+
+message scLogin {
+	EMRes res = 1;
+	//心跳时间
+	int32 heartTime = 2;
+	//用户信息
+	UserData user =3;
+	string erroCode = 4;
+	int32 LoginType = 5;
+}
+
+message csReconnect {
+	string openId = 1;
+}
+message scReconnect {
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+// 新服推荐数据
+message csGames {
+	
+}
+message scGames {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Games gamesPay = 4;
+}
+
+//请求收藏
+message csGetCollect {
+
+}
+message scGetCollect {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Collect collect = 3;
+}
+
+//新增收藏
+message csAddCollect {
+	Collect collect = 1;
+}
+message scAddCollect {
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+//删除收藏
+message csDelCollect {
+	//服务器id
+	repeated int32 sid = 1;
+	//删除所有收藏(1:全部删除)
+	int32 delAll = 2;
+}
+message scDelCollect {
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+//请求服务器数据（EMProtoID.serverData）
+message csSData {
+}
+message scSData {
+	EMRes res = 1;
+	string erroCode = 2;
+	int64 sTimeMS = 3;//服务器当前时间戳（毫秒）
+	repeated string origin = 4;
+}
+
+//签到（EMProtoID.sign）
+message csSign {
+	string signIp = 1;
+	enum STATUS{
+		FAIL = 0;
+		SUCCESS = 1;
+	}
+	STATUS	status = 2;
+	
+}
+message scSign {
+	EMRes res = 1;
+	string erroCode = 2;
+	//当前积分
+	int32 score = 3;
+}
+
+//软件工具 (EMProtoID.softwares)
+message csSoftwares {
+}
+message scSoftwares {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Software software = 3;
+}
+
+//推广 (EMProtoID.invit)
+message csInvit {
+	// 邀请人
+	int32 invited = 1;
+	string machineCode = 2;
+}
+message scInvit {
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+//玩家工具&GM工具 (EMProtoID.tool)
+message csTool {
+
+}
+message scTool {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Software software = 3;
+}
+
+//消息 (EMProtoID.boxMessage)
+message csBoxMessage {
+
+}
+message scBoxMessage {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated BoxMessage	boxMessage = 3;
+}
+
+//推送消息
+message Push_BoxMessage {
+	BoxMessage boxMessage = 1;
+}
+
+//跑马灯 (EMProtoID.notice)
+message csNotice {
+
+}
+message scNotice {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Notice	notice = 3;
+}
+
+//推送跑马灯
+message Push_Notice {
+	repeated Notice	notice = 1;
+}
+
+//轮播图 (EMProtoID.slide)
+message csSlide {
+
+}
+message scSlide {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Slide slide = 3;
+}
+
+//推送轮播图
+message Push_Slide {
+	repeated Slide slide = 1;
+}
+
+//删除消息 (EMProtoID.delMessage)
+message csDelMessage {
+	repeated int32 mId = 1;
+}
+
+message scDelMessage {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated int32 mId = 3;
+}
+
+//阅读消息
+message csReadMessage {
+	message MsgInfo{
+		// 消息Id
+		int32 mId = 1;
+		// Message中的toUser
+		int32 toUser = 2;
+		//消息类型
+		int32 msgType = 3;
+	}
+	repeated MsgInfo msgInfo = 1;
+}
+message scReadMessage {
+	message MsgInfo{
+		// 原消息Id
+		int32 mId = 1;
+		// 替换的消息id
+		int32 replace = 2;
+	}
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated MsgInfo msgInfo = 3;
+}
+
+
+//比赛直播
+message csGamesLive {
+	
+}
+message scGamesLive {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Live live = 3;
+}
+
+// 推送比赛直播
+message Push_gamesLive {
+	repeated Live Live = 1;
+}
+
+// 推送多处登陆
+message Push_severalLand {
+	
+}
+
+// 退出
+message csLogOut {
+
+}
+message scLogOut {
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+// 推送用户信息
+message push_userData {
+	UserData data = 1;
+}
+
+// 全网排行数据
+message csAllGames {
+	
+}
+message scAllGames {
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated Games allGames = 3;
+}
+
+//提现
+message csWithdraw {
+	int32 drawMoney = 1;
+}
+message scWithdraw {
+	EMRes res = 1;
+	string erroCode = 2;
+	//钱包里的钱
+	int32 money =3;
+}
+
+//请求验证码
+message csAuthentication {
+    int64  phone = 1;
+}
+message scAuthentication {
+	EMRes res = 1;
+	string erroCode = 2;
+}
+//提交验证码检查
+message csCheckAuthenCode {
+    int64  phone = 1;
+	string code = 2;
+}
+message scCheckAuthenCode {
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 gold = 3; 
+}
+
+
+//刷新苹果树金额
+message csAppleGold{
+}
+
+message scAppleGold{
+    EMRes res = 1;
+	string erroCode = 2;
+	int32 gold = 3;
+}
+
+//订单充值
+message csOrderPay{
+   int32  gold = 1;
+   string gameName = 2;
+   string url = 3;
+   string account = 4;
+   string area = 5;
+   string qq = 6;
+   string unit = 7;
+}
+message scOrderPay{
+    EMRes res = 1;
+	string erroCode = 2;
+	int32 gold = 3;
+}
+
+//订单查询
+message csOrderInquire{
+}
+message scOrderInquire{
+    EMRes res = 1;
+	string erroCode = 2;
+	repeated Order order = 3;
+}
+
+message Order{
+	//订单时间
+	int64 time = 1;
+	//联系qq
+	string qq = 2;
+	//充值金额
+	int32 gold = 3;
+	//订单编号
+	string orderId = 4;
+	//兑换状态 0：待发放1：拒绝2：已发放
+	int32 isComplete = 5;
+	//账户id
+	string account = 6;
+	//充值单位
+	string unit = 7;
+	//游戏名
+	string gameName = 8;
+	//游戏区服
+	string area = 9;
+}
+
+//排行榜
+message csRankList{
+}
+message scRankList{
+    EMRes res = 1;
+	string erroCode = 2;
+	repeated CapitalRank goldRankList = 3;
+	repeated CapitalRank moneyRankList = 4;
+}
+message CapitalRank{
+   string nickname = 1;
+   //(money角)
+   int32 val = 2;
+}
+
+//游戏资产：我的金币/我的钱包/全网金币总量/当日奖池金币（每5分钟请求一次服务器）
+message csCapital{
+	int32 uid = 1;
+}
+message scCapital{
+    EMRes res = 1;
+	string erroCode = 2;
+	//我的金币
+	int32 myGold = 3;
+	//我的钱包(角)
+	int32 myMoney = 4;
+	//全网金币总量
+	int64 allGold = 5;
+	//当日奖池金币
+	int64 poolGold = 6;
+}
+
+
+//保存盒子信息（本次游戏时长、本次下载游戏数、本次查看了几款游戏）
+message csSaveSoftData
+{
+	//本次游戏时长(分)
+	int32 gameTimeMin = 1;
+	//本次下载游戏数量
+	int32 downloadCount = 2;
+	//本次查看游戏数量
+	int32 browseGameCount = 3;
+	//当前游戏id
+	int32 gameId = 4;
+}
+
+message scSaveSoftData
+{
+    EMRes res = 1;
+	string erroCode = 2;
+	//今日游戏时长(分)
+	int32 todayGameTimeMin = 3;
+	//今日下载游戏数量
+	int32 todayDownloadCount = 4;
+	//今日查看游戏数量
+	int32 todayBrowseGameCount = 5;
+	//每周签到次数
+	int32 weekSigninCount = 6;
+	//本月游戏时长(单位:分钟)
+	int32 monthGameTimeMin = 7;
+	//游戏总时长(单位:秒)
+	int64 totalGameTimeSec = 8;
+	//用户等级
+	int32 userLevel = 9;
+	//用户等级名称
+	string userLevelName = 10;
+}
+
+//获取盒子信息（今日游戏时长、今日游戏数、今日查看了几款游戏）
+message csGetSoftData
+{
+}
+
+message scGetSoftData
+{
+    EMRes res = 1;
+	string erroCode = 2;
+	//今日游戏时长(分)
+	int32 todayGameTimeMin = 3;
+	//今日下载游戏数量
+	int32 todayDownloadCount = 4;
+	//今日查看游戏数量
+	int32 todayBrowseGameCount = 5;
+	//每周签到次数
+	int32 weekSigninCount = 6;
+	//本月游戏时长(单位:分钟)
+	int32 monthGameTimeMin = 7;
+	//游戏总时长(单位:秒)
+	int64 totalGameTimeSec = 8;
+	//用户等级
+	int32 userLevel = 9;
+	//用户等级名称
+	string userLevelName = 10;
+}
+
+
+//获取任务信息
+message csGetTaskData
+{}
+message scGetTaskData
+{
+    EMRes res = 1;
+	string erroCode = 2;	
+	repeated int32 hasFinish = 3;
+	repeated int32 hasDrawReward = 4;
+	//有多少 被邀请的好友在我离线期间 在线时长达到了1个小时
+	int32 inviteNum = 5;
+}
+
+//完成任务
+message csFinishTask
+{
+	int32 taskId = 1;
+}
+
+message scFinishTask
+{
+    EMRes res = 1;
+	string erroCode = 2;
+	int32 taskId = 3;
+	int32 gold = 4;
+}
+
+//领取任务奖励
+message csDrawTaskReward
+{
+	int32 taskId = 1;
+}
+//客户端需要请求capital，刷新金币/钱包等资产
+message scDrawTaskReward
+{
+    EMRes res = 1;
+	string erroCode = 2;
+	int32 taskId = 3;
+	//奖励值
+	int32 rewardVal = 4;
+}
+//0点推送（新的一天通知客户端刷新相应数据：任务相关等）
+message Push_NewDay {
+}
+//邀请的好友在线达到1小时
+message Push_Invite {
+	//有多少邀请奖励没领取
+	int32 invitedNum = 5;
+}
+//保存用户行为数据
+message csSaveUserActionData
+{
+   //服务器名、网站链接、访问时间，
+	repeated GameWebLog gameWebLog = 1;
+	//服务器名、网站链接、下载结果、下载时间；
+	repeated GameDownLoadLog gameDownLoadLog = 2;
+	//服务器名、网站链接、启动时间、下载时间
+	repeated GameStartLog gameStartLog = 3;
+}
+
+message scSaveUserActionData
+{
+    EMRes res = 1;
+	string erroCode = 2;
+}
+
+//网站访问日志
+message GameWebLog{
+    string  servername = 1;
+    string  weblink = 2;
+	string  visittime = 3;
+	int32   gameId = 4;
+}
+//游戏下载日志
+message GameDownLoadLog{
+    string servername = 1;
+	string weblink = 2;
+	string downloadresult = 3;
+	string download_time = 4;
+	int32  gameId = 5;
+	string downloadAddress = 6;
+	string downloadChannel =7;
+}
+//游戏启动日志
+message GameStartLog{
+    string servername = 1;
+	string weblink = 2;
+	string starttime = 3;
+	string download_time = 4;
+	int32  gameId = 5;
+}
+//金币兑换余额
+message csGoldConversion{
+	int32 gold = 1;
+}
+
+message scGoldConversion{
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 gold = 3;
+}
+
+message csExchangeKey{
+	int32 uId = 1;
+}
+
+message scExchangeKey{
+	EMRes res = 1;
+	string erroCode = 2;
+	
+	int32 uId = 3;
+	string key = 4;
+}
+
+//获取账号下的品牌服列表信息	
+message csGetBrandServeInfoList{}
+message scGetBrandServeInfoList
+{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated BrandServeList brandServeList = 3;
+}
+
+message BrandServeList{
+	int32 gameId =1;
+	string gameName =2;					//游戏名
+	string version =3;					//版本介绍
+	int32 level =4;  					//等级 1金牌 2银牌 3铜牌
+	int32 openAreaDays =5;				//开区天数
+	int32 onlineNum =6;					//在线人数
+	string videoUrl =7;					//视频流地址
+	int32 taskAward = 8;				//任务奖励
+	int32 tryScore = 9;					//试玩评分
+	string tryEval =10;   				//试玩评测
+	int32 recommen = 11;				//推荐指数
+	int32 gameIfDownload =12;			//游戏是否下载
+	int32 gameTimeMin = 13;				//游戏在线时长(分)
+	int32 gameDayNumber = 14;			//游戏在线天数
+	string detail =15;					//官网地址
+} 
+
+
+//保存品牌服信息
+message csSaveBrandServeInfo{
+	//当前游戏id
+	int32 gameId = 1;
+	//当前游戏时长(分)
+	int32 gameTimeMin = 2;
+}
+message scSaveBrandServeInfo
+{
+	EMRes res = 1;
+	string erroCode = 2;
+	//当前游戏id
+	int32 gameId = 3;
+	//游戏在线时长(分)
+	int32 gameTimeMin = 4;
+	//游戏在线天数
+	int32 gameDayNumber = 5;
+	//游戏是否下载
+	int32 gameIfDownload = 6;
+}
+
+//领取品牌服奖励
+message csReceiveBrandServeAward{
+	//当前游戏id
+	int32 gameId = 1;
+}
+message scReceiveBrandServeAward
+{
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 accountId = 3;
+	int32 gameId = 4;
+	int32 gold = 5;
+}
+//沙巴克活动获取用户token
+message csSbkToken{
+	int32 accountId = 1;//玩家id
+}
+message scSbkToken{
+	EMRes res = 1;
+	string sbk_token = 2;//token 2个小时有效
+	int32 uid = 3;//玩家id 
+}
+
+//金币兑换钱包
+message csGoldExchangeMoney{
+	int32 uid = 1;
+	int32 gold = 2;
+}
+
+message scGoldExchangeMoney{
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 uid = 3;
+	int32 gold = 4;
+	int32 money = 5;
+}
+
+//查询金币兑换钱包历史记录
+message csQureyExchangeHistory{
+	int32 uid = 1;
+}
+
+message ExchangeHistory{
+	string type = 1;
+	int32 gold = 2;
+	int32 money = 3;
+	string time = 4;
+}
+
+message scQureyExchangeHistory{
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 uid = 3;
+	repeated ExchangeHistory exchangeDetail = 4;
+}
+
+//保障服列表
+message csQueryBoxInsure{
+	int32 uid = 1;//玩家id
+}
+
+message BoxInsureLevel{
+	int32 level = 1;//保障服等级id
+	string levelName = 2;//保障服等级名称
+}
+
+message BoxInsureInfo{
+	int32 gameId = 1; //游戏id
+	string gameName = 2;//游戏名称
+	string introduce = 3;//游戏介绍
+	string url = 4;//官网地址
+	string levelName = 5;//保障等级 
+	string deadline = 6;//到期时间,年月日
+	int32 validTime = 7;//有效期，单位:天
+	int32 insuranceExist = 8;//判断玩家是否已经投保过这个服，1 不可投保，0 可以投保
+}
+
+message scQueryBoxInsure{
+	EMRes res = 1;
+	repeated BoxInsureLevel boxInsureLevel = 2;//等级列表
+	repeated BoxInsureInfo boxInsureInfo = 3;//保障服列表信息
+}
+
+//投保与保障金额
+message csQueryBoxInsureAmount{
+	int32 gameId = 1;//游戏id
+	int32 uid = 2;//玩家id 
+}
+
+message BoxInsureAmount{
+	int32 insureAmount = 1;//投保金额
+	int32 guaranteeAmount = 2;//保障金额
+	int32 discount = 3;//折扣
+	int32 isClick = 4;//0:可以点击 1:不可以点击
+}
+
+message scQueryBoxInsureAmount{
+	EMRes res = 1;
+	int32 gameId = 2;//游戏id
+	string gameName = 3;//游戏名称
+	int32 firstBuyInsurance = 4;//是否首次购买保险 0 第一次购买 1 不是第一次购买
+	repeated BoxInsureAmount boxInsureAmount = 5;//投保与保障金额 
+}
+
+//我要投保
+message csBuyInsurance{
+	int32 gameId = 1;//游戏id
+	int32 uid = 2;//玩家id
+	string gameName = 3;//游戏名称
+	int32 money = 4;//保障金额
+	int32 validTime = 5;//有效期
+	int32 insureMoney = 6;//投保金额 
+}
+
+message scBuyInsurance{
+	EMRes res = 1;
+	string code = 2;
+	int32 gold = 3; //金币
+}
+
+//我的保障
+message csMyInsure{
+	int32 uid = 1;//玩家id
+}
+
+message MyInsure{
+	string orderId = 1;//保障单号
+	string gameName = 2;//投保游戏名称
+	int32 insuranceAmount =3;//保障额度
+	int32 validTime = 4;//有效期
+	string state = 5;//保障状态
+	string InsureDate = 6;//投保日期
+}
+
+message scMyInsure{
+	EMRes res = 1;
+	repeated MyInsure myInsure = 2;//我的保障
+}
+
+//投保公告
+message csInsuranceAffiche{
+	
+}
+
+message InsuranceAfficheInfo{
+	int32 uid = 1;//玩家id
+	string nickName=2;//玩家昵称
+	int32 gameId = 3;//游戏id
+	string gameName = 4;//游戏名称
+}
+
+message scInsuranceAffiche{
+	EMRes res = 1;
+	repeated InsuranceAfficheInfo insuranceAfficheInfo = 2;
+}
+
+//沙巴克比赛竞猜结果信息	
+message csSbkGuessesInfo{
+	//竞猜期数 
+	int32 periodsNumber =1;
+}
+
+message scSbkGuessesInfo
+{
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 periodsNumber =3;   			//竞猜期数
+	string liveAddress =4;    			//比赛直播地址
+	int32 guessesSumAmountRed =5;   	//红方投注总金额
+	int32 guessesSumAmountBlue =6;   	//蓝方投注总金额
+	int32 matchResults =7;   			//比赛结果 1：红方赢 ，2：蓝方赢 ，3：结果暂无
+}
+
+message csSbkGuessesInfoList{
+	//竞猜期数 
+	int32 periodsNumber =1;
+}
+message scSbkGuessesInfoList
+{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated GuessesInfo guessesInfo = 3;
+}
+
+message GuessesInfo{
+	int32 periodsNumber =1;   			//竞猜期数
+	int32 guessesType =2;    			//竞猜投注方 1：红方 ，2：蓝方
+	int32 matchResults =3;   			//比赛结果 1：红方赢 ，2：蓝方赢
+	int32 guessesAmount =4;   			//单次投注金额
+	int64 guessesTime =5;    			//竞猜投注时间 时间戳格式
+}
+
+
+//沙巴克比赛竞猜投注
+message csSbkGuesses{
+	int32 periodsNumber =1;   			//竞猜期数
+	int32 guessesType =2;     			//竞猜投注方 1：红方 ，2：蓝方
+	int32 guessesAmount =3;  			//本次投注金额
+}
+message scSbkGuesses{
+	EMRes res = 1;
+	string erroCode = 2;
+	int32 gold = 3; //剩余的总金币
+	int32 guessesSumAmountRed =4;   	//红方投注总金额
+	int32 guessesSumAmountBlue =5;   	//蓝方投注总金额
+}
+
+message scSbkGuessesResultPush{
+	int32 matchResults =1;   			//比赛结果 1：红方赢 ，2：蓝方赢
+	int32 gold =2;						//账户剩余的金币
+}
+
+
+//大家都在玩游戏数据
+message csEveryoneIsPlayingInfoList{}
+message scEveryoneIsPlayingInfoList
+{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated EveryoneIsPlayingInfo everyoneIsPlayingInfo = 3;
+}
+
+
+message EveryoneIsPlayingInfo{
+	string accountName =1; 		//当前在玩这款游戏的游戏玩家
+	int32 gameId =2; 		 	//游戏id
+	string gameName = 3;		//游戏名字
+	string webLink = 4;			//游戏官网
+	int64 gameStartTime =5; 	//游戏在线时长
+}
+
+message csTableDataUpdateTime{
+	int32 protoId = 1;
+}
+message scTableDataUpdateTime{
+	int64 updateTime = 1;
+}
+
+message csNoviceHelpDocument{}
+message scNoviceHelpDocument{
+	int64 updateTime = 1;
+	repeated HelpDocument helpDocument = 2;
+}
+
+message HelpDocument{
+	string title = 1;
+	string content = 2;
+}
+
+message csGameSharing{
+	int32 gameId = 1;
+	string gamename =2;
+	string gameWebsite =3;
+	string downloadAddress =4;
+}
+message scGameSharing{
+	//游戏分享码
+	int32 shareCode = 1;
+}
+
+message csGameSharingDetails{
+	int32 shareCode = 1;
+}
+message scGameSharingDetails{
+	EMRes res = 1;
+	string erroCode = 2;
+	Games games =3;
+}
+message csGamesLoginPopup{}
+message scGamesLoginPopup{
+	//用户昵称
+	string ncikName = 1;
+	//登录天数
+	int32 loginDays = 2;
+	//上次登录时间
+	int64 loginTime = 3;
+	//活动标题
+	string activityModuleLeft = 4;
+	//活动模块图片地址
+	string activityPictureAddressLeft = 5;
+	//活动模块详情页地址
+	string activityModuleDetailsleft = 6;
+	string activityModuleRight = 7;
+	string activityPictureAddressRight = 8;
+	string activityModuleDetailsRight = 9;
+
+}
+
+//开启宝箱
+message csOpenTreasureBox{
+	//玩家id
+	int32 uid = 1;
+	//宝箱id
+	string treasureBoxId = 2; 
+}
+
+message TreasureBox{
+	//物品类型 1000、金币 1001、充值卡 1002、专属充值卡 1003、活动道具
+	int32 type = 1;
+	//物品名称
+	string goodsName = 2;
+	//物品描述
+	string goodsDescribe = 3;
+	//物品数量
+	int32 number = 4;
+	//时间
+	int64 time = 5;
+	//宝箱名称
+	string treasureBoxName = 6;
+	//宝箱ID
+	string treasureBoxId = 7;
+	//基础金币
+	int32 basicsGold = 8;
+	//金币倍数获得的金币
+	int32 goldMultiple = 9;
+	//等级倍数获得的金币
+	int32 levelMultiple = 10;
+}
+
+message scOpenTreasureBox{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated TreasureBox treasureBox = 3;
+}
+
+//宝箱物品--我的物品
+message csTreasureBoxMyGoods{
+	//玩家id
+	int32 uid = 1;
+}
+
+message scTreasureBoxMyGoods{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated TreasureBox treasureBox = 3;
+}
+
+//宝箱物品--开启记录
+message csTreasureBoxOpenRecord{
+	//玩家id
+	int32 uid = 1;
+	int32 isToday = 2;//0:查询全部宝箱记录  1、查询当天宝箱记录
+}
+
+message scTreasureBoxOpenRecord{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated TreasureBox treasureBox = 3;
+	int32 isToday = 4;//0:查询全部宝箱记录  1、查询当天宝箱记录
+}
+
+//保存反馈信息
+message csSaveFeedbackInfo{
+	int32 uid = 1;   			//玩家账户id
+	string contact = 2;			//联系方式
+	string contents = 3;		//反馈内容
+}
+
+message scSaveFeedbackInfo{
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+//获取热更新提示内容
+message csGetUpdateTipInfo{}
+
+message scUpdateTipInfo{
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+//沙巴克赛事信息
+message csSbkEventInfo{
+	int32 uid = 1;
+}
+
+message scSbkEventInfo{
+	EMRes res = 1;
+	string erroCode = 2;
+	//激活码
+	string activationCode = 3;
+	//好搜服logo
+	string hsfLogoUrl = 4;
+	//游戏服logo
+	string gameLogoUrl = 5;
+	//比赛日期
+	string eventStartTime= 6;
+	//比赛保底奖金
+	int32 eventBonus = 7; 
+	//赞助商（比赛版本）
+	string eventSponsors = 8;
+	//游戏下载地址
+	string gameDownloadUrl= 9;
+	//赛事期数
+	int32 eventPeriods = 10;
+	//游戏官网地址
+	string officialWebsite = 11;
+	//游戏名称
+	string gameName = 12;
+}
+
+// 沙巴克转盘任务
+message csSbkActivityTask{
+	//玩家id
+	int32 uid = 1;
+}
+
+message scSbkActivityTask{
+	EMRes res = 1;
+	string erroCode = 2;
+	//玩沙巴克赛事服在线时长
+	int32 gameTime = 3;
+	//抽奖码抽奖是否已使用 0、可以使用抽奖码 1、不可以在使用抽奖码抽奖
+	int32 lotteryCodeState = 4;
+	//剩余抽奖次数
+	int32 luckDrawNumber = 5;
+	//游戏时长已领取任务
+	repeated SbkGameTimeTask sbkGameTimeTask = 6;
+	//转盘物品
+	repeated SbkLotteryGoods sbkLotteryGoods = 7;
+	//中奖名单
+	repeated GetWinningList getWinningList = 8;
+}
+
+//中奖名单
+message GetWinningList{
+	//玩家昵称
+	string ncikName = 1;
+	//奖品名称
+	string goodsName = 2;
+	//奖品数量
+	int32 goodsNumber = 3;
+}
+
+message SbkGameTimeTask{
+	// 1、游戏时长60分钟任务，2、游戏时长120分钟任务
+	int32 taskId = 1;
+}
+
+message SbkLotteryGoods{
+	//物品id
+	int32 goodsId = 1;
+	//物品名称
+	string goodsName = 2;
+	//物品数量
+	int32 goodsNumber = 3;
+}
+
+//沙巴克赛事服计时
+message csSbkGameTime{
+	//玩家id
+	int32 uid = 1;
+	//游戏时长(一分钟发一次)
+	int32 gameTime = 2;
+}
+
+message scSbkGameTime{
+	EMRes res = 1;
+	string errorCode = 2;
+	//沙巴克赛事服总在线时长
+	int32 gameTime = 3;
+}
+
+//沙巴克转盘抽奖
+message csSbkDialLuckDraw{
+	int32 uid = 1;
+	//赛事期数
+	int32 eventPeriods = 2;
+	//抽奖码
+	string lotteryCode = 3;
+}
+
+message scSbkDialLuckDraw{
+	EMRes res = 1;
+	string erroCode = 2;
+	//奖品ID
+	int32 goodsId = 3;
+	//奖品名称
+	string goodsName = 4;
+	//奖品数量
+	int32 goodsNumbre = 5;
+}
+
+//沙巴克赛事
+message csSbkMatch{
+	
+}
+
+message scSbkMatch{
+	EMRes res = 1;
+	string erroCode = 2;
+	//神豪榜游戏角色名
+	string rechargeKingName = 3;
+	//神豪榜奖金
+	int32 rechargeBonus = 4;
+	//pk王奖金
+	int32 killBonus = 5;
+	//PK王游戏角色名
+	string killKingName = 6;
+	//打金王奖金
+	int32 playBonus = 7;
+	//打金王游戏角色名
+	string playMoneyKingName = 8;
+	//神豪榜
+	repeated TopUpKing topUpKing = 9;
+	//PK王
+	repeated PkKing pkKing  = 10;
+	//手气王
+	repeated LuckKing luckKing = 11;
+}
+
+message TopUpKing{
+	//赛事期数
+	int32 eventPeriods = 1;
+	//神豪榜游戏角色名
+	string rechargeKingName = 2;
+	//充值金额
+	int32 rechargeAmount = 3;
+}
+
+message PkKing{
+	//赛事期数
+	int32 eventPeriods = 1;
+	//PK王游戏角色名
+	string killKingName = 2;
+	//击杀数量
+	int32 killNum = 3;
+}
+
+message LuckKing{
+	//赛事期数
+	int32 eventPeriods = 1;
+	//打金王游戏角色名
+	string playMoneyKingName = 2;
+	//打金数
+	int32 playMoneyNum = 3;
+}
+
+//沙巴克赛事抽奖次数领取
+message csSbkMatchGetLotteryNumber{
+	int32 uid = 1;
+	//领取在线时长任务，抽奖次数 1、领取60分钟在线时长任务奖励 2、领取120分钟在线时长任务奖励 3、领取激活码抽奖次数
+	int32 taskId = 2;
+	//抽奖码
+	string lotteryCode = 3;
+	//赛事期数
+	int32 eventPeriods = 4;
+}
+
+message scSbkMatchGetLotteryNumber{
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+//盒子活动中心活动详细信息
+message csActivityCenterInfo{}
+
+message scActivityCenterInfo{
+	EMRes res = 1;
+	string erroCode = 2;
+	repeated ActivityInfo activityInfo = 3;
+}
+
+//更新活动点击数
+message csUpdateActivityHits{
+	int32 activityId = 1;
+}
+
+message scUpdateActivityHits{
+	EMRes res = 1;
+	string erroCode = 2;
+}
+
+message DataUpdatePushCommon{
+	ActivityCenterInfo activity_center_info = 1;
+}
+
+message ActivityCenterInfo{
+	repeated ActivityInfo activity_info_list = 1;
+}
+
+message ActivityInfo{
+	//活动ID
+	int32 activityId = 1;
+ 	//活动标题
+ 	string activityTitle = 2;
+	//活动描述
+ 	string activityDescribe = 3;
+	//活动缩略图地址
+ 	string activityThumbnailImage = 4;
+	//活动轮播图地址
+ 	string activityCarouselImage = 5;
+	//活动网站地址
+ 	string activityUrl = 6;
+	//是否置顶轮播 [0 false，1 true]
+	int32 activityIsCarousel = 7;
+	//活动是否永久 [0 false, 1 true]
+	int32 activityIsPerpetual = 8;
+	//活动开始时间
+	int64 activityStartTime = 9;
+	//活动结束时间
+	int64 activityEndTime = 10;
+	//活动简要描述 用于轮播时展示
+ 	string activityBriefDescribe = 11;
+}
+
+message csSbkEventPreStart{}
+
+message scSbkEventPreStart{
+	EMRes res = 1;
+	// 沙巴克赛事是否已预开启  0,未开启 1,已开启
+	int32 isPreStart = 2 ;
+}
