@@ -74,6 +74,7 @@ public class NettyServer {
             channel = future.channel();
             logger.info("[start] [Netty Server 启动在 {} 端口]",port);
             logger.info("Git Master 提交测试");
+            logger.info("Git hot—fix 提交测试");
         }
     }
 
